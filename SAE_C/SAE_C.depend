@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1702376516 source:z:\saé algo\sae_c\fonctions.c
+	<stdio.h>
+	<stdlib.h>
+	"fonctions.h"
+	"type.h"
+
+1702376419 z:\saé algo\sae_c\fonctions.h
+
+1702377831 z:\saé algo\sae_c\type.h
+
+1702376518 source:z:\saé algo\sae_c\main.c
+	<stdio.h>
+	<stdlib.h>
+	"fonctions.h"
+	"type.h"
+
+1584205420 source:z:\saé algo c\sae_c\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1702376419 z:\saé algo c\sae_c\fonctions.h
+
+1702378139 z:\saé algo c\sae_c\type.h
+

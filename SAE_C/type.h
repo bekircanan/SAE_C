@@ -21,7 +21,7 @@ typedef struct{
     int no_vol ;
     char companie[50], destination[50];
     int no_comptoir, h_debut_enregistrement, h_fin_enregistrement, salle_embarquement, h_debut_embarquement, h_fin_embarquement, h_decollage;
-    ETAT_VOL etat_de_vol;
+    char etat_de_vol[50];
     PASSAGER liste_passager;
 }VOL;
 

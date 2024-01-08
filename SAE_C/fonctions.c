@@ -6,14 +6,16 @@
 
 
 void lire(FILE file[],char mot[]) {
-    char carac;
+    char carac="";
     int i=0;
-    while((carac=fgetc(file))!=',' && carac != '\n' && !feof(file) && carac != '\"'){
-        if(carac!=',')
+    while(carac!=',' && carac != '(' && carac!='\"'&& !feof(file) ){
+        carac=fgetc(file);
+        printf("%c\n",carac);
+        if(carac!=',' && carac!='\"')
             mot[i]=carac;
         i++;
     }
-    mot[i] = '\0';
+    printf("%s\n",mot);
 }
 
 void lire_entier(FILE file[],int num){

@@ -7,14 +7,18 @@
 #define chemin "data_vols.csv"
 #define MAX 1000
 
+void lire_2(FILE file[],int num){
+    fscanf(file,"%d/",num);
+}
+
 int main()
 {
 
     VOL vol[MAX];
-    char ligne[1000];
+    char ligne[500],temp;
     time_t now;
     struct tm *now_tm;
-    int hour,min,avenir,no_vol=0;
+    int hour,min,avenir,i,no_vol=0;
 
     now = time(NULL);
     now_tm = localtime(&now);
@@ -26,7 +30,7 @@ int main()
         printf("Echec");
         exit(EXIT_FAILURE);
     }
-    while (fgets(ligne, 10000, file) != NULL) {
+    while (fgets(ligne, 1000, file) != NULL) {
         lire_entier(file,&vol[no_vol].no_vol);
         lire(file,vol[no_vol].companie);
         lire(file,vol[no_vol].destination);
@@ -37,13 +41,28 @@ int main()
         lire_entier(file,&vol[no_vol].h_debut_embarquement);
         lire_entier(file,&vol[no_vol].h_fin_embarquement);
         lire_entier(file,&vol[no_vol].h_decollage);
-        lire(file,vol[no_vol].etat_de_vol);
-
-
+        lire(file,vol[no_vol].etat_de_vol.etat);
+        if(vol[no_vol].etat_de_vol.etat[0]=='R'){
+            fscanf(file,"%d min),",&vol[no_vol].etat_de_vol.minute);
+        }else{
+        vol[no_vol].etat_de_vol.minute = 0;
+        }
+        i=0;
+        while (!feof(file) && temp != '\"') {
+            lire(file, vol[no_vol].liste_passager[i].nom);
+            lire(file, vol[no_vol].liste_passager[i].prenom);
+            lire_2(file,&vol[no_vol].liste_passager[i].date_naissance.jour);
+            lire_2(file,&vol[no_vol].liste_passager[i].date_naissance.mois);
+            lire_2(file,&vol[no_vol].liste_passager[i].date_naissance.annee);
+            lire_entier(file,&vol[no_vol].liste_passager[i].no_siege);
+            fscanf(file,"%f",&vol[no_vol].liste_passager[i].prix_billet);
+            i++;
+            temp = fgetc(file);
+        }
         no_vol++;
     }
     trie(no_vol,vol);
-    for(int i=0;i<no_vol;i++){
+    /*for(int i=0;i<no_vol;i++){
             avenir=(((vol[i].h_decollage/100)*60)+vol[i].h_decollage%100) - ((hour*60)+min);
             if(avenir<180 && avenir > 0){
                 printf("no_vol: %d\n",vol[i].no_vol);
@@ -56,10 +75,10 @@ int main()
                 printf("h_debut_embarquement: %d\n", vol[i].h_debut_embarquement);
                 printf("h_fin_embarquement: %d\n", vol[i].h_fin_embarquement);
                 printf("h_decollage: %d\n", vol[i].h_decollage);
-                printf("etat_de_vol: %s\n", vol[i].etat_de_vol);
+                printf("etat_de_vol: %s\n", vol[i].etat_de_vol.etat);
                 printf("\n");
         }
-    }
+    }*/
     fclose(file);
     return 0;
 }

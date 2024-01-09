@@ -3,7 +3,6 @@
 #include "type.h"
 
 void lire(FILE file[],char mot[]);
-void lire_entier(FILE file[],int num);
 void trie(int max,VOL vol[max]);
 
 

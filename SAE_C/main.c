@@ -7,10 +7,6 @@
 #define chemin "data_vols.csv"
 #define MAX 1000
 
-void lire_2(FILE file[],int num){
-    fscanf(file,"%d/",num);
-}
-
 int main()
 {
 
@@ -20,42 +16,38 @@ int main()
     struct tm *now_tm;
     int hour,min,avenir,i,no_vol=0;
 
-    now = time(NULL);
-    now_tm = localtime(&now);
-    hour = now_tm->tm_hour;
-    min = now_tm->tm_min;
-
     FILE * file=fopen(chemin, "r");
     if (file==NULL) {
         printf("Echec");
         exit(EXIT_FAILURE);
     }
     while (fgets(ligne, 1000, file) != NULL) {
-        lire_entier(file,&vol[no_vol].no_vol);
+        fscanf(file,"%d,",&vol[no_vol].no_vol);
         lire(file,vol[no_vol].companie);
         lire(file,vol[no_vol].destination);
-        lire_entier(file,&vol[no_vol].no_comptoir);
-        lire_entier(file,&vol[no_vol].h_debut_enregistrement);
-        lire_entier(file,&vol[no_vol].h_fin_enregistrement);
-        lire_entier(file,&vol[no_vol].salle_embarquement);
-        lire_entier(file,&vol[no_vol].h_debut_embarquement);
-        lire_entier(file,&vol[no_vol].h_fin_embarquement);
-        lire_entier(file,&vol[no_vol].h_decollage);
+        fscanf(file,"%d,",&vol[no_vol].no_comptoir);
+        fscanf(file,"%d,",&vol[no_vol].h_debut_enregistrement);
+        fscanf(file,"%d,",&vol[no_vol].h_fin_enregistrement);
+        fscanf(file,"%d,",&vol[no_vol].salle_embarquement);
+        fscanf(file,"%d,",&vol[no_vol].h_debut_embarquement);
+        fscanf(file,"%d,",&vol[no_vol].h_fin_embarquement);
+        fscanf(file,"%d,",&vol[no_vol].h_decollage);
         lire(file,vol[no_vol].etat_de_vol.etat);
         if(vol[no_vol].etat_de_vol.etat[0]=='R'){
             fscanf(file,"%d min),",&vol[no_vol].etat_de_vol.minute);
         }else{
-        vol[no_vol].etat_de_vol.minute = 0;
+            vol[no_vol].etat_de_vol.minute = 0;
         }
         i=0;
-        while (!feof(file) && temp != '\"') {
+        temp='b';
+        while (!feof(file) && temp != '"') {
             lire(file, vol[no_vol].liste_passager[i].nom);
             lire(file, vol[no_vol].liste_passager[i].prenom);
-            lire_2(file,&vol[no_vol].liste_passager[i].date_naissance.jour);
-            lire_2(file,&vol[no_vol].liste_passager[i].date_naissance.mois);
-            lire_2(file,&vol[no_vol].liste_passager[i].date_naissance.annee);
-            lire_entier(file,&vol[no_vol].liste_passager[i].no_siege);
-            fscanf(file,"%f",&vol[no_vol].liste_passager[i].prix_billet);
+            fscanf(file,"%d/", &vol[no_vol].liste_passager[i].date_naissance.jour);
+            fscanf(file,"%d/", &vol[no_vol].liste_passager[i].date_naissance.mois);
+            fscanf(file,"%d,", &vol[no_vol].liste_passager[i].date_naissance.annee);
+            fscanf(file,"%d,", &vol[no_vol].liste_passager[i].no_siege);
+            fscanf(file,"%f", &vol[no_vol].liste_passager[i].prix_billet);
             i++;
             temp = fgetc(file);
         }

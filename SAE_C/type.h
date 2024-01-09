@@ -11,7 +11,8 @@ typedef struct {
 }ETAT_VOL;
 
 typedef struct {
-    char nom[30], prenom[30];
+    char nom[30];
+    char prenom[30];
     DATE date_naissance;
     int no_siege;
     float prix_billet;

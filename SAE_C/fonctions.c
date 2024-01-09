@@ -5,22 +5,17 @@
 #include "type.h"
 
 
-void lire(FILE file[],char mot[]) {
-    char carac="";
+void lire(FILE * file,char *mot) {
+    char carac='b';
     int i=0;
-    while(carac!=',' && carac != '(' && carac!='\"'&& !feof(file) ){
+    while(carac!=',' && carac != '(' && carac!='\"' && carac != '\n' && !feof(file) ){
         carac=fgetc(file);
-        printf("%c\n",carac);
         if(carac!=',' && carac!='\"')
             mot[i]=carac;
         i++;
     }
-    printf("%s\n",mot);
 }
 
-void lire_entier(FILE file[],int num){
-    fscanf(file,"%d,",num);
-}
 
 void trie(int max,VOL vol[max]){
     for(int i=1;i<max;i++){

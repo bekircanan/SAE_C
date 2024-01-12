@@ -11,7 +11,7 @@
 int main(){
 
     VOL vol[MAX];
-    char ligne[500],temp,destinationRecherche[30],compagnieRecherche[30],*res;
+    char ligne[500],temp,destinationRecherche[30],compagnieRecherche[30];
     int heure,avenir,i,vol_total=0,choice,id_vol,heuredecolageRecherche;
 
     FILE * file=fopen(chemin, "r");
@@ -54,28 +54,29 @@ int main(){
         vol[vol_total].liste_passager[i].prix_billet=0;
         vol_total++;
     }while(!feof(file));
+    fclose(file);
     vol[vol_total].salle_embarquement=0;
     trie_decollage(vol_total-1,vol);
     do{
         printf("\n");
-        printf("----------------------------------------------------------------\n");
-        printf("| 1 pour L affichage des informations sur les vols. \n");
-        printf("|---------------------------------------------------------------\n");
-        printf("| 2 pour La recherche d un vol. \n");
-        printf("|---------------------------------------------------------------\n");
-        printf("| 3 pour Les ecrans d affichage des salles d embarquement. \n");
-        printf("|---------------------------------------------------------------\n");
-        printf("| 4 pour la gestion des retards et des annulations. \n");
-        printf("|---------------------------------------------------------------\n");
-        printf("| 0 pour arreter le programme. \n");
-        printf("----------------------------------------------------------------\n");
+        printf("----------------------------------------------------------------------\n");
+        printf("| 1 pour afficher les informations sur les vols.                     |\n");
+        printf("|--------------------------------------------------------------------|\n");
+        printf("| 2 pour rechercher un vol.                                          |\n");
+        printf("|--------------------------------------------------------------------|\n");
+        printf("| 3 pour consulter les ecrans d'affichage des salles d'embarquement. |\n");
+        printf("|--------------------------------------------------------------------|\n");
+        printf("| 4 pour visialiser la gestion des retards et des annulations.       |\n");
+        printf("|--------------------------------------------------------------------|\n");
+        printf("| 0 pour arreter le programme.                                       |\n");
+        printf("----------------------------------------------------------------------\n");
         printf("\n");
-        printf("choisissez celui que vous souhaitez : ");
+        printf("Saisissez celui que vous souhaitez : ");
         scanf("%d",&choice);
 
         switch(choice){
             case 0:break;
-            case 1: printf("Enter votre heure sur format HHMM: ");
+            case 1: printf("Enter votre heure de decollage sur format HHMM: ");
                     scanf("%d",&heure);
                     printf(" --------------------------------------------------------------------------------------------------------------------------------------------------\n");
                     printf("| heure de decollage \t numero de vol \t nom de la compagnie \t destination \t comptoir d enregistrement \t salle d embarquement  etat du vol\n");
@@ -91,36 +92,36 @@ int main(){
                     break;
 
             case 2:
-                    printf("Entrez l'heure de decollage pour la recherche: ");
+                    printf("\nRecherche:\n\n");
+                    printf("Saisissez 0 si vous ne voulez pas utiliser la recherche par rapport aux criteres proposes.\n\n");
+                    printf("Entrez l'heure de decollage format HHMM de votre vol: ");
                     scanf("%d", &heuredecolageRecherche );
                     getchar();
-                    printf("Entrez la destination pour la recherche : "); /*faire les commentaire et expliquer que pr pas rechercher il faut faire 0*/
+                    printf("Entrez la destination de votre vol: "); /*faire les commentaire et expliquer que pr pas rechercher il faut faire 0*/
                     fgets(destinationRecherche, 30, stdin);
                     trouver_ligne(destinationRecherche);
-                    printf("Entrez la compagnie pour la recherche: ");
+                    printf("Entrez la compagnie de votre vol: ");
                     fgets(compagnieRecherche, 30, stdin);
                     trouver_ligne(compagnieRecherche);
                     printf(" --------------------------------------------------------------------------------------------------------------------------------------------------\n");
                     printf("| heure de decollage \t numero de vol \t nom de la compagnie \t destination \t comptoir d enregistrement \t salle d embarquement  etat du vol\n");
                     printf("|--------------------------------------------------------------------------------------------------------------------------------------------------\n");
                     for(int i = 0; i<vol_total; i++){
-                        res=strstr(vol[i].destination, destinationRecherche);
-                        if((destinationRecherche[0] == '0' || res != NULL) && (compagnieRecherche[0] == '0' || strstr(vol[i].companie, compagnieRecherche) != NULL) && (heuredecolageRecherche == 0 || vol[i].h_decollage == heuredecolageRecherche)){
+                        if((destinationRecherche[0] == '0' || strstr(vol[i].destination, destinationRecherche) != NULL) && (compagnieRecherche[0] == '0' || strstr(vol[i].companie, compagnieRecherche) != NULL) && (heuredecolageRecherche == 0 || vol[i].h_decollage == heuredecolageRecherche)){
                             printf("| %2d:%2d \t\t %2d \t\t %-15s \t %-15s  %4d \t\t\t\t %4d \t\t                %-10s  \n",vol[i].h_decollage/100,vol[i].h_decollage%100,vol[i].no_vol,vol[i].companie,vol[i].destination,vol[i].h_debut_enregistrement,vol[i].h_debut_embarquement,vol[i].etat_de_vol.etat);
                             printf("|--------------------------------------------------------------------------------------------------------------------------------------------------\n");
                         }
                     }
                     break;
-            case 3:printf("Entrez le numero de vol dont vous souhaitez voir les passagers :");
+            case 3:printf("Entrez le numero de vol dont vous souhaitez voir les passagers : ");
                     scanf("%d",&id_vol);
                     tri_billet(id_vol,vol);
                     break;
             case 4:gestion_temp(vol_total,vol);
                     break;
-            default:printf("Try again\n");
+            default:printf("Essayez encore\n");
                     break;
         }
     }while((choice!=0));
-    fclose(file);
     return 0;
 }

@@ -6,6 +6,15 @@
 
 
 /* lire du ficher */
+/**
+ * Lit le fichier jusqu'à la prochaine virgule, guillemet, parenthèse ou fin de ligne,
+ * stocke le résultat dans la chaîne de caractères mot.
+ *
+ * entrées/sorties file: FILE
+ * entrées/sorties mot: char
+ *
+ * pré-cond: il faut que le fichier ce soit bien ouvert
+ */
 void lire(FILE * file,char *mot) {
     char carac='b';
     int i=0;
@@ -18,7 +27,14 @@ void lire(FILE * file,char *mot) {
 }
 
 /* tri avec insertion */
-
+/**
+ * Trie le tableau de vols par heure de décollage en utilisant le tri par insertion.
+ *
+ * entrée/sortie max: int
+ * entrée/sortie vol[max]: VOL
+ *
+ * pré-cond: il faut que le fichier ce soit bien ouvert
+ */
 void trie_decollage(int max,VOL vol[max]){
     for(int i=1;i<max;i++){
         VOL tmp = vol[i];
@@ -32,6 +48,14 @@ void trie_decollage(int max,VOL vol[max]){
 }
 
 /* passager */
+/**
+ * Trie les passagers d'un vol par âge et par prix de billet.
+ *
+ * entrées/sorties no_vol: int
+ * entrées/sorties vol[]: VOL
+ *
+ * pré-cond: il faut que le fichier ce soit bien ouvert
+ */
 void tri_billet(int no_vol, VOL vol[]) {
     int x=-1,debut=-1;
     do{
@@ -88,13 +112,21 @@ void tri_billet(int no_vol, VOL vol[]) {
             printf("| %-10s%-10s \t  %2d/%2d/%2d\t\t %2d\t\t%.2f|\n",vol[x].liste_passager[i].nom,vol[x].liste_passager[i].prenom,vol[x].liste_passager[i].date_naissance.jour,vol[x].liste_passager[i].date_naissance.mois,vol[x].liste_passager[i].date_naissance.annee,vol[x].liste_passager[i].no_siege,vol[x].liste_passager[i].prix_billet);
         printf("|---------------------------------------------------------------------|\n");    }
     }else{
-        printf("il n'y a pas de vol avec ce numéro\n\n.");
+        printf("Il n'existe pas de vol possedant ce numéro\n\n.");
     }
 
 }
 
 /* gestion du retard */
-
+/**
+ * Modifie l'heure de décollage en ajoutant une certaine quantité de minutes.
+ *
+ * entrée decollage: int
+ * entrée plus: int
+ * sortie heure_main: int
+ *
+ * pré-cond: il faut que le fichier ce soit bien ouvert
+ */
 int change_heure(int decollage,int plus){
     int heure_main;
     int heure=decollage / 100;
@@ -110,7 +142,14 @@ int change_heure(int decollage,int plus){
         heure_main=9999;
     return heure_main;
 }
-
+/**
+ * Trie les passagers d'un vol par âge et par prix de billet.
+ *
+ * entrées/sorties no_vol: int
+ * entrées/sorties vol[]: VOL
+ *
+ * pré-cond: il faut que le fichier ce soit bien ouvert
+ */
 void gestion_temp(int max,VOL vol[max]){
     VOL retarde[max];
     int x,dif,cpt=0;

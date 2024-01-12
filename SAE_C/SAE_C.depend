@@ -23,19 +23,60 @@
 
 1702378139 z:\saé algo c\sae_c\type.h
 
-1704792508 source:d:\s1\prog_c\sae\sae_c\fonctions.c
+1705051806 source:d:\s1\prog_c\sae\sae_c\fonctions.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	"fonctions.h"
 	"type.h"
 
-1704791308 d:\s1\prog_c\sae\sae_c\fonctions.h
+1705049166 d:\s1\prog_c\sae\sae_c\fonctions.h
 	"type.h"
 
 1704792356 d:\s1\prog_c\sae\sae_c\type.h
 
-1704792480 source:d:\s1\prog_c\sae\sae_c\main.c
+1705049080 source:d:\s1\prog_c\sae\sae_c\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"fonctions.h"
+	"type.h"
+
+1704818712 source:c:\users\bekir\onedrive\desktop\123456.c
+	<stdio.h>
+
+1704897544 source:f:\s1\prog_c\sae\sae_c\fonctions.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"fonctions.h"
+	"type.h"
+
+1704895016 f:\s1\prog_c\sae\sae_c\fonctions.h
+	"type.h"
+
+1704792356 f:\s1\prog_c\sae\sae_c\type.h
+
+1704898024 source:f:\s1\prog_c\sae\sae_c\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"fonctions.h"
+	"type.h"
+
+1704955528 source:e:\s1\prog_c\sae\sae_c\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"fonctions.h"
+	"type.h"
+
+1704916054 e:\s1\prog_c\sae\sae_c\fonctions.h
+	"type.h"
+
+1704792356 e:\s1\prog_c\sae\sae_c\type.h
+
+1704967816 source:e:\s1\prog_c\sae\sae_c\fonctions.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>

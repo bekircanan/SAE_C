@@ -18,7 +18,7 @@ void lire(FILE file[],char mot[]);
  * entrée/sortie max: int
  * entrée/sortie vol[max]: VOL
  *
- * pré-cond: il faut que le fichier ce soit bien ouvert
+ * pré-cond: Il faut que le tableau ne soit pas vide
  */
 void trie_decollage(int max,VOL vol[max]);
 /**
@@ -28,7 +28,6 @@ void trie_decollage(int max,VOL vol[max]);
  * entrée plus: int
  * sortie heure_main: int
  *
- * pré-cond: il faut que le fichier ce soit bien ouvert
  */
 int change_heure(int decollage,int plus);
 /**
@@ -37,7 +36,7 @@ int change_heure(int decollage,int plus);
  * entrées/sorties max: int
  * entrées/sorties vol[max]: VOL
  *
- * pré-cond: il faut que le fichier ce soit bien ouvert
+ * pré-cond: Il faut que le tableau ne soit pas vide
  */
 void gestion_temp(int max,VOL vol[max]);
 /**
@@ -46,9 +45,15 @@ void gestion_temp(int max,VOL vol[max]);
  * entrées/sorties no_vol: int
  * entrées/sorties vol[]: VOL
  *
- * pré-cond: il faut que le fichier ce soit bien ouvert
+ * pré-cond: Il faut que le tableau ne soit pas vide
  */
 void tri_billet(int no_vol, VOL vol[]);
+/**
+ * Remplace la cractère '\n' par le cractère '\0'
+ *
+ * entrées/sorties mot: char
+ *
+ */
 void trouver_ligne(char mot[]);
 
 #endif // FONCTIONS_H_INCLUDED

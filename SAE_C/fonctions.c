@@ -90,7 +90,7 @@ void tri_billet(int no_vol, VOL vol[]) {
             printf("| %-10s%-10s \t  %2d/%2d/%2d\t\t %2d\t\t%.2f|\n",vol[x].liste_passager[i].nom,vol[x].liste_passager[i].prenom,vol[x].liste_passager[i].date_naissance.jour,vol[x].liste_passager[i].date_naissance.mois,vol[x].liste_passager[i].date_naissance.annee,vol[x].liste_passager[i].no_siege,vol[x].liste_passager[i].prix_billet);
         printf("|---------------------------------------------------------------------|\n");    }
     }else{
-        printf("Il n'existe pas de vol possedant ce numéro\n\n.");
+        printf("Il n'existe pas de vol possedant ce numero\n\n.");
     }
 
 }
@@ -122,7 +122,7 @@ void gestion_temp(int max,VOL vol[max]){
     printf("|--------------------------------------------------------------------------------------------------------------------------------------------------\n");
     for(int i=0;i<max;i++){
         if(vol[i].etat_de_vol.etat[0]=='R'){
-            printf("| %2d:%2d \t\t %2d \t\t %-15s \t %-15s  %4d \t\t\t\t %4d \t\t                %-10s  \n",vol[i].h_decollage/100,vol[i].h_decollage%100,vol[i].no_vol,vol[i].companie,vol[i].destination,vol[i].h_debut_enregistrement,vol[i].h_debut_embarquement,vol[i].etat_de_vol.etat);
+            printf("| %2d:%2d \t\t %2d \t\t %-15s \t %-15s  %4d \t\t\t\t %4d \t\t                %-10s  \n",vol[i].h_decollage/100,vol[i].h_decollage%100,vol[i].no_vol,vol[i].companie,vol[i].destination,vol[i].no_comptoir,vol[i].salle_embarquement,vol[i].etat_de_vol.etat);
             printf("|--------------------------------------------------------------------------------------------------------------------------------------------------\n");
             vol[i].h_decollage=change_heure(vol[i].h_decollage,vol[i].etat_de_vol.minute);
             vol[i].etat_de_vol.minute=0;
@@ -153,7 +153,6 @@ void gestion_temp(int max,VOL vol[max]){
     printf("|--------------------------------------------------------------------------------------------------------------------------------------------------\n");
     for(int i=0;i<max;i++){
             if(vol[i].etat_de_vol.etat[0]=='R'){
-                *vol[i].etat_de_vol.etat="A l heure";
                 printf("| %2d:%2d \t\t %2d \t\t %-15s \t %-15s  %4d \t\t\t\t %4d \t\t                %-10s  \n",vol[i].h_decollage/100,vol[i].h_decollage%100,vol[i].no_vol,vol[i].companie,vol[i].destination,vol[i].h_debut_enregistrement,vol[i].h_debut_embarquement,vol[i].etat_de_vol.etat);
                 printf("|--------------------------------------------------------------------------------------------------------------------------------------------------\n");
             }

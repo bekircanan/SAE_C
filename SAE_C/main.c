@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "fonctions.h"
 #include "type.h"
 
@@ -10,7 +11,7 @@
 int main(){
 
     VOL vol[MAX];
-    char ligne[500],temp,destinationRecherche[30],compagnieRecherche[30];
+    char ligne[500],temp,destinationRecherche[30],compagnieRecherche[30],*res;
     int heure,avenir,i,vol_total=0,choice,id_vol,heuredecolageRecherche;
 
     FILE * file=fopen(chemin, "r");
@@ -95,14 +96,16 @@ int main(){
                     getchar();
                     printf("Entrez la destination pour la recherche : "); /*faire les commentaire et expliquer que pr pas rechercher il faut faire 0*/
                     fgets(destinationRecherche, 30, stdin);
-                    printf("%s",destinationRecherche);
+                    trouver_ligne(destinationRecherche);
                     printf("Entrez la compagnie pour la recherche: ");
                     fgets(compagnieRecherche, 30, stdin);
+                    trouver_ligne(compagnieRecherche);
                     printf(" --------------------------------------------------------------------------------------------------------------------------------------------------\n");
                     printf("| heure de decollage \t numero de vol \t nom de la compagnie \t destination \t comptoir d enregistrement \t salle d embarquement  etat du vol\n");
                     printf("|--------------------------------------------------------------------------------------------------------------------------------------------------\n");
                     for(int i = 0; i<vol_total; i++){
-                        if((destinationRecherche[0] == '0' || strstr(vol[i].destination, destinationRecherche) == 0) && (compagnieRecherche[0] == '0' || strstr(vol[i].companie, compagnieRecherche) == 0) && (heuredecolageRecherche == 0 || vol[i].h_decollage == heuredecolageRecherche)){
+                        res=strstr(vol[i].destination, destinationRecherche);
+                        if((destinationRecherche[0] == '0' || res != NULL) && (compagnieRecherche[0] == '0' || strstr(vol[i].companie, compagnieRecherche) != NULL) && (heuredecolageRecherche == 0 || vol[i].h_decollage == heuredecolageRecherche)){
                             printf("| %2d:%2d \t\t %2d \t\t %-15s \t %-15s  %4d \t\t\t\t %4d \t\t                %-10s  \n",vol[i].h_decollage/100,vol[i].h_decollage%100,vol[i].no_vol,vol[i].companie,vol[i].destination,vol[i].h_debut_enregistrement,vol[i].h_debut_embarquement,vol[i].etat_de_vol.etat);
                             printf("|--------------------------------------------------------------------------------------------------------------------------------------------------\n");
                         }

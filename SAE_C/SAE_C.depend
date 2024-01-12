@@ -23,22 +23,23 @@
 
 1702378139 z:\saé algo c\sae_c\type.h
 
-1705051806 source:d:\s1\prog_c\sae\sae_c\fonctions.c
+1705055094 source:d:\s1\prog_c\sae\sae_c\fonctions.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	"fonctions.h"
 	"type.h"
 
-1705049166 d:\s1\prog_c\sae\sae_c\fonctions.h
+1705055148 d:\s1\prog_c\sae\sae_c\fonctions.h
 	"type.h"
 
 1704792356 d:\s1\prog_c\sae\sae_c\type.h
 
-1705049080 source:d:\s1\prog_c\sae\sae_c\main.c
+1705055072 source:d:\s1\prog_c\sae\sae_c\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
+	<string.h>
 	"fonctions.h"
 	"type.h"
 

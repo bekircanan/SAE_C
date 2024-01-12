@@ -33,50 +33,50 @@ void trie_decollage(int max,VOL vol[max]){
 
 /* passager */
 void tri_billet(int no_vol, VOL vol[]) {
-    int x=0,debut=0;
+    int x=-1,debut=-1;
     do{
         x++;
     }while(vol[x].salle_embarquement!=0 && vol[x].no_vol!=no_vol);
     if(vol[x].salle_embarquement!=0){
-        for (int i = 1;vol[x-1].liste_passager[i].prix_billet!=0; i++) {
-                PASSAGER tmp = vol[x-1].liste_passager[i];
+        for (int i = 1;vol[x].liste_passager[i].prix_billet!=0; i++) {
+                PASSAGER tmp = vol[x].liste_passager[i];
                 int age = 2024 - tmp.date_naissance.annee;
                 int j = i - 1;
-                while (j >= 0 && age < (2024 - vol[x-1].liste_passager[j].date_naissance.annee)) {
-                    vol[x-1].liste_passager[j+1] = vol[x-1].liste_passager[j];
+                while (j >= 0 && age < (2024 - vol[x].liste_passager[j].date_naissance.annee)) {
+                    vol[x].liste_passager[j+1] = vol[x].liste_passager[j];
                     j--;
                 }
-                vol[x-1].liste_passager[j+1] = tmp;
+                vol[x].liste_passager[j+1] = tmp;
         }/* trouver indice de 12 */
         do{
             debut++;
-        }while(vol[x-1].liste_passager[debut].prix_billet!=0 &&(2024 - vol[debut].liste_passager[debut].date_naissance.annee)<=12);
-        for (int i = debut+1;vol[x-1].liste_passager[i].prix_billet!=0; i++) {
-                PASSAGER tmp = vol[x-1].liste_passager[i];
+        }while(vol[x].liste_passager[debut].prix_billet!=0 &&(2024 - vol[x].liste_passager[debut].date_naissance.annee)<=12);
+        for (int i = debut+2;vol[x].liste_passager[i].prix_billet!=0; i++) {
+                PASSAGER tmp = vol[x].liste_passager[i];
                 int j = i - 1;
-                while (j >= 0 && tmp.prix_billet > vol[x-1].liste_passager[j].prix_billet) {
-                    vol[x-1].liste_passager[j+1] = vol[x-1].liste_passager[j];
+                while (j >= debut && tmp.prix_billet > vol[x].liste_passager[j].prix_billet) {
+                    vol[x].liste_passager[j+1] = vol[x].liste_passager[j];
                     j--;
                 }
-                vol[x-1].liste_passager[j+1] = tmp;
+                vol[x].liste_passager[j+1] = tmp;
         }
-        for (int i = 1;vol[x-1].liste_passager[i].prix_billet!=vol[x-1].liste_passager[debut].prix_billet; i++) {
-                PASSAGER tmp = vol[x-1].liste_passager[i];
+        for (int i = 1;vol[x].liste_passager[i].prix_billet!=vol[x].liste_passager[debut].prix_billet; i++) {
+                PASSAGER tmp = vol[x].liste_passager[i];
                 int j = i - 1;
-                while (j >= 0 && tmp.prix_billet > vol[x-1].liste_passager[j].prix_billet) {
-                    vol[x-1].liste_passager[j+1] = vol[x-1].liste_passager[j];
+                while (j >= 0 && tmp.prix_billet > vol[x].liste_passager[j].prix_billet) {
+                    vol[x].liste_passager[j+1] = vol[x].liste_passager[j];
                     j--;
                 }
-                vol[x-1].liste_passager[j+1] = tmp;
+                vol[x].liste_passager[j+1] = tmp;
         }
         PASSAGER tmp;
-        for(int i = 1;vol[x-1].liste_passager[i].prix_billet!=0; i++){
-                if(vol[x-1].liste_passager[i].prix_billet==vol[x-1].liste_passager[i-1].prix_billet){
-                        for(int i=0;vol[x-1].liste_passager[i].nom[i]!='\0';i++){
-                                if(vol[x-1].liste_passager[i].nom[i-1]>vol[x-1].liste_passager[i].nom[i-1]){
-                                    tmp = vol[x-1].liste_passager[i];
-                                    vol[x-1].liste_passager[i]=vol[x-1].liste_passager[i-1];
-                                    vol[x-1].liste_passager[i-1]=tmp;
+        for(int i = 1;vol[x].liste_passager[i].prix_billet!=0; i++){
+                if(vol[x].liste_passager[i].prix_billet==vol[x].liste_passager[i-1].prix_billet){
+                        for(int i=0;vol[x].liste_passager[i].nom[i]!='\0';i++){
+                                if(vol[x].liste_passager[i].nom[i-1]>vol[x].liste_passager[i].nom[i-1]){
+                                    tmp = vol[x].liste_passager[i];
+                                    vol[x].liste_passager[i]=vol[x].liste_passager[i-1];
+                                    vol[x].liste_passager[i-1]=tmp;
                                 }
                         }
                 }
@@ -84,8 +84,8 @@ void tri_billet(int no_vol, VOL vol[]) {
         printf(" ----------------------------------------------------------------------\n");
         printf("| Nom \t    Prenom \t Date de naissance \t numero siege  prix   |\n");
         printf("|---------------------------------------------------------------------|\n");
-        for(int i = 0;vol[x-1].liste_passager[i].prix_billet!=0; i++){
-            printf("| %-10s%-10s \t  %2d/%2d/%2d\t\t %2d\t\t%.2f|\n",vol[x-1].liste_passager[i].nom,vol[x-1].liste_passager[i].prenom,vol[x-1].liste_passager[i].date_naissance.jour,vol[x-1].liste_passager[i].date_naissance.mois,vol[x-1].liste_passager[i].date_naissance.annee,vol[x-1].liste_passager[i].no_siege,vol[x-1].liste_passager[i].prix_billet);
+        for(int i = 0;vol[x].liste_passager[i].prix_billet!=0; i++){
+            printf("| %-10s%-10s \t  %2d/%2d/%2d\t\t %2d\t\t%.2f|\n",vol[x].liste_passager[i].nom,vol[x].liste_passager[i].prenom,vol[x].liste_passager[i].date_naissance.jour,vol[x].liste_passager[i].date_naissance.mois,vol[x].liste_passager[i].date_naissance.annee,vol[x].liste_passager[i].no_siege,vol[x].liste_passager[i].prix_billet);
         printf("|---------------------------------------------------------------------|\n");    }
     }else{
         printf("il n'y a pas de vol avec ce numéro\n\n.");
@@ -158,3 +158,10 @@ void gestion_temp(int max,VOL vol[max]){
     }
 }
 
+void trouver_ligne(char mot[]){
+    for(int i=0;mot[i]!='\0';i++){
+        if(mot[i]=='\n'){
+            mot[i]='\0';
+        }
+    }
+}
